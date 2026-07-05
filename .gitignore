@@ -1,0 +1,10 @@
+# Fichiers sources lourds non optimisés (gardés en local, pas dans le dépôt)
+images/salon-ath-1.png
+images/salon-ath-2.png
+images/salon-ath-3.png
+images/salon-ath-video.mp4
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+desktop.ini

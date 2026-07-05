@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="fr-BE">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Le Salon | L'univers Letizia.T · Péruwelz &amp; Ath</title>
+  <meta name="description" content="Découvrez l'univers Letizia.T : philosophie, valeurs et nos deux salons de coiffure à Péruwelz (Rue Astrid 18) et Ath (Grand'Place 11). Horaires, itinéraires et réservation en ligne." />
+  <link rel="canonical" href="https://letizia-t.be/salons.html" />
+  <meta property="og:type"        content="website" />
+  <meta property="og:locale"      content="fr_BE" />
+  <meta property="og:title"       content="Le Salon | L'univers Letizia.T · Péruwelz &amp; Ath" />
+  <meta property="og:description" content="Notre philosophie, nos valeurs et nos deux adresses en Belgique. Salon de coiffure Letizia.T à Péruwelz et Ath." />
+  <meta property="og:url"         content="https://letizia-t.be/salons.html" />
+  <meta property="og:image"       content="https://letizia-t.be/og-image.jpg" />
+  <meta property="og:site_name"   content="Letizia.T Coiffure" />
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Le Salon | L'univers Letizia.T · Péruwelz &amp; Ath" />
+  <meta name="twitter:description" content="Philosophie, valeurs et adresses de nos deux salons Letizia.T en Belgique." />
+  <meta name="twitter:image"       content="https://letizia-t.be/og-image.jpg" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://letizia-t.be/" },
+      { "@type": "ListItem", "position": 2, "name": "Le Salon", "item": "https://letizia-t.be/salons.html" }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .salon-full-card {
+      background: var(--white);
+      border: 1px solid rgba(192,192,192,0.25);
+      overflow: hidden;
+      margin-bottom: 3rem;
+      transition: border-color var(--t-mid), box-shadow var(--t-mid);
+    }
+    .salon-full-card:hover { border-color: var(--silver); box-shadow: 0 8px 60px rgba(0,0,0,0.06); }
+    .salon-full-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 480px;
+    }
+    .salon-full-image { overflow: hidden; background: var(--gray-light); }
+    .salon-full-image img { width:100%; height:100%; object-fit:cover; transition: transform 0.8s var(--ease); }
+    .salon-full-card:hover .salon-full-image img { transform: scale(1.04); }
+    .salon-full-body {
+      padding: clamp(2.5rem, 5vw, 4rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+    .salon-full-num {
+      font-family: var(--font-display);
+      font-size: 5rem;
+      font-weight: 300;
+      color: rgba(192,192,192,0.15);
+      line-height: 1;
+    }
+    .salon-full-body h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 400;
+      color: var(--dark);
+      line-height: 1.1;
+    }
+    .salon-full-body h2 em { font-style: italic; }
+    .salon-info-group { display: flex; flex-direction: column; gap: 1rem; }
+    .salon-info-row { display: flex; align-items: flex-start; gap: 0.75rem; }
+    .salon-info-icon { width: 16px; height: 16px; color: var(--silver); flex-shrink: 0; margin-top: 2px; }
+    .salon-info-text { font-size: 0.9rem; color: var(--gray); line-height: 1.5; }
+    .salon-info-text a { transition: color var(--t-fast); }
+    .salon-info-text a:hover { color: var(--dark); }
+    .salon-info-text strong { display: block; font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--dark); margin-bottom: 0.1rem; font-weight: 500; }
+    .salon-full-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; padding-top: 0.5rem; }
+    .map-embed {
+      height: 300px;
+      background: var(--gray-light);
+      overflow: hidden;
+      position: relative;
+    }
+    .map-placeholder-img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.8); }
+    .map-overlay-btn {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--white);
+      padding: 0.75rem 1.5rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--dark);
+      border: 1px solid rgba(26,26,26,0.15);
+      transition: all var(--t-fast);
+      white-space: nowrap;
+    }
+    .map-overlay-btn:hover { background: var(--dark); color: var(--white); }
+    .salon-img-hover { transition: transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94); }
+    .salon-img-hover:hover { transform: scale(1.05); }
+    @media (max-width: 768px) {
+      .salon-full-grid { grid-template-columns: 1fr; }
+      .salon-full-image { height: 260px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav-logo" aria-label="Letizia.T — Accueil"><img src="logo.png" alt="Letizia.T Coiffure" class="nav-logo-img" /></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="salons.html" class="active">Nos Salons</a></li>
+    <li><a href="prestations.html">Prestations</a></li>
+    <li><a href="galerie.html">Galerie</a></li>
+    <li><a href="avis.html">Avis</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="https://salonkee.be/salon-group/letizia-t" target="_blank" rel="noopener noreferrer" class="nav-book">Réserver</a>
+  <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu" role="dialog">
+  <nav class="mobile-menu-links">
+    <a href="index.html" class="mobile-menu-link">Accueil</a>
+    <a href="salons.html" class="mobile-menu-link">Nos Salons</a>
+    <a href="prestations.html" class="mobile-menu-link">Prestations</a>
+    <a href="galerie.html" class="mobile-menu-link">Galerie</a>
+    <a href="avis.html" class="mobile-menu-link">Avis</a>
+    <a href="contact.html" class="mobile-menu-link">Contact</a>
+  </nav>
+</div>
+
+<!-- ── HERO ── -->
+<header class="page-hero">
+  <div class="page-hero-bg">
+    <img src="images/salon-ath-2.jpg" alt="Salon Letizia.T" loading="eager" />
+  </div>
+  <div class="container page-hero-content">
+    <span class="label page-hero-label" data-reveal="up">Le Salon · Péruwelz &amp; Ath</span>
+    <h1 class="page-hero-title" data-reveal="up" data-delay="1">
+      Une expérience coiffure<br /><em>élégante et personnalisée.</em>
+    </h1>
+  </div>
+</header>
+
+<!-- ── PHILOSOPHIE ── -->
+<section class="salon-philosophy section">
+  <div class="container">
+    <div class="section-header">
+      <span class="label section-label text-silver" data-reveal="up">Notre philosophie</span>
+      <h2 class="h2" data-reveal="up" data-delay="1">
+        Letizia.T signe une expérience<br /><em>coiffure raffinée, moderne et personnalisée.</em>
+      </h2>
+    </div>
+    <p class="philosophy-text" data-reveal="up" data-delay="2">
+      "Nous croyons que chaque chevelure est unique, et que chaque cliente mérite une attention complète, un regard précis et une approche sur-mesure. C'est cette conviction qui guide chacun de nos gestes."
+    </p>
+    <div class="philosophy-cols">
+      <div class="philosophy-col" data-reveal="left">
+        <p>Fondé avec une vision claire : créer un espace où le soin du cheveu devient une expérience sensorielle complète. Letizia.T, c'est plus qu'un salon — c'est un lieu de confiance, d'écoute et de précision.</p>
+        <p>Depuis notre ouverture, nous avons construit une relation durable avec nos clientes, fondée sur la qualité de nos prestations, la justesse de nos conseils et la chaleur de notre accueil.</p>
+      </div>
+      <div class="philosophy-col" data-reveal="right">
+        <p>Nos deux salons à Péruwelz et à Ath partagent la même identité : un espace élégant, pensé pour que vous vous sentiez bien dès le premier instant. Chaque détail de l'environnement a été réfléchi pour vous offrir une expérience mémorable.</p>
+        <p>Nous sélectionnons nos produits avec exigence, en privilégiant la qualité, l'efficacité et le respect du cheveu. Parce que ce que nous appliquons sur votre chevelure compte autant que notre savoir-faire.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── IMAGE ÉDITORIALE ── -->
+<div style="height:60vh;overflow:hidden;position:relative">
+  <img src="images/salon-ath-3.jpg" alt="Intérieur salon Letizia.T" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;filter:brightness(0.72);" />
+  <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center">
+    <p style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,3.5rem);font-weight:300;font-style:italic;color:#fff;text-align:center;padding:0 2rem;max-width:70ch;line-height:1.3" data-reveal="up">
+      "Un lieu pensé pour révéler votre style avec précision et élégance."
+    </p>
+  </div>
+</div>
+
+<!-- ── VALEURS ── -->
+<section class="salon-values section">
+  <div class="container">
+    <div class="section-header centered">
+      <span class="label section-label text-silver" data-reveal="up">Nos valeurs</span>
+      <h2 class="h2" data-reveal="up" data-delay="1">Ce qui nous <em>distingue</em></h2>
+    </div>
+    <div class="values-grid">
+      <div class="value-item" data-reveal="up">
+        <div class="value-num">01</div>
+        <h4>L'écoute avant tout</h4>
+        <p>Chaque rendez-vous commence par une conversation. Nous prenons le temps de comprendre vos attentes, votre mode de vie et votre vision du résultat idéal.</p>
+      </div>
+      <div class="value-item" data-reveal="up" data-delay="1">
+        <div class="value-num">02</div>
+        <h4>L'exigence du geste</h4>
+        <p>Notre équipe se forme en continu aux dernières techniques et tendances. Chaque coupe, chaque couleur est exécutée avec rigueur et passion.</p>
+      </div>
+      <div class="value-item" data-reveal="up" data-delay="2">
+        <div class="value-num">03</div>
+        <h4>Des produits d'excellence</h4>
+        <p>Nous sélectionnons uniquement des gammes professionnelles dont nous connaissons la composition, l'efficacité et la douceur pour le cheveu.</p>
+      </div>
+      <div class="value-item" data-reveal="up" data-delay="1">
+        <div class="value-num">04</div>
+        <h4>Un cadre élégant</h4>
+        <p>L'atmosphère de nos salons est pensée pour vous mettre à l'aise — lumière douce, espace aéré, ambiance raffinée et bienveillante.</p>
+      </div>
+      <div class="value-item" data-reveal="up" data-delay="2">
+        <div class="value-num">05</div>
+        <h4>La fidélité récompensée</h4>
+        <p>Nos clientes fidèles sont notre plus belle récompense. Nous les accueillons toujours avec la même attention, quel que soit le rendez-vous.</p>
+      </div>
+      <div class="value-item" data-reveal="up" data-delay="3">
+        <div class="value-num">06</div>
+        <h4>Un résultat qui dure</h4>
+        <p>Nous vous conseillons sur les soins à réaliser à domicile pour que votre coiffure reste aussi belle entre chaque visite.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── NOS ADRESSES ── -->
+<section style="background:var(--off-white);color:var(--dark);padding:var(--section-v) 0">
+  <div class="container">
+
+    <div class="section-header centered" style="margin-bottom:4rem">
+      <span class="label section-label" style="color:var(--gray)" data-reveal="up">Nos adresses</span>
+      <h2 class="h2" style="color:var(--dark)" data-reveal="up" data-delay="1">
+        Deux salons,<br /><em>une même exigence.</em>
+      </h2>
+      <p class="body-large" style="color:var(--gray);max-width:58ch;margin:1.5rem auto 0" data-reveal="up" data-delay="2">
+        Letizia.T vous accueille dans deux adresses en province de Hainaut. Retrouvez-nous à Péruwelz ou à Ath pour vivre l'expérience du salon.
+      </p>
+    </div>
+
+    <!-- SALON PÉRUWELZ -->
+    <div class="salon-full-card" data-reveal="up">
+      <div class="salon-full-grid">
+        <div class="salon-full-image">
+          <img src="images/salon-peruwelz-10.jpg" alt="Salon Letizia.T Péruwelz" loading="lazy" />
+        </div>
+        <div class="salon-full-body">
+          <div class="salon-full-num" aria-hidden="true">01</div>
+          <h2>Letizia.T<br /><em>Péruwelz</em></h2>
+          <div class="salon-info-group">
+            <div class="salon-info-row">
+              <svg class="salon-info-icon" viewBox="0 0 24 24" fill="none"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5c-1.4 0-2.5-1.1-2.5-2.5S10.6 6.5 12 6.5s2.5 1.1 2.5 2.5S13.4 11.5 12 11.5z" fill="currentColor"/></svg>
+              <div class="salon-info-text">
+                <strong>Adresse</strong>
+                Rue Astrid 18<br />7600 Péruwelz, Belgique
+              </div>
+            </div>
+            <div class="salon-info-row">
+              <svg class="salon-info-icon" viewBox="0 0 24 24" fill="none"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" fill="currentColor"/></svg>
+              <div class="salon-info-text">
+                <strong>Téléphone</strong>
+                <a href="tel:+32471395446">+32 471 39 54 46</a>
+              </div>
+            </div>
+            <div class="salon-info-row">
+              <svg class="salon-info-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.3"/><path d="M12 7v5l3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+              <div class="salon-info-text">
+                <strong>Horaires</strong>
+                Mardi – Vendredi : 9h00 – 18h00<br />
+                Samedi : 9h00 – 17h00<br />
+                Lundi &amp; Dimanche : Fermé
+              </div>
+            </div>
+            <div class="salon-info-row">
+              <svg class="salon-info-icon" viewBox="0 0 24 24" fill="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <div class="salon-info-text">
+                <strong>Jour de promo</strong>
+                Tous les <strong>vendredis</strong>, profitez de tarifs réduits sur une sélection de forfaits coloration et balayage.
+              </div>
+            </div>
+          </div>
+          <div class="salon-full-actions">
+            <a href="tel:+32471395446" class="btn btn-dark btn-sm">Appeler</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Rue+Astrid+18+Péruwelz+Belgique" target="_blank" rel="noopener noreferrer" class="btn btn-ghost-dark btn-sm">Itinéraire</a>
+            <a href="https://salonkee.be/salon-group/letizia-t" target="_blank" rel="noopener noreferrer" class="btn btn-ghost-dark btn-sm">Réserver</a>
+          </div>
+        </div>
+      </div>
+      <div class="map-embed">
+        <img class="map-placeholder-img" src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1200&q=60" alt="Carte — Letizia.T Péruwelz" loading="lazy" />
+        <a href="https://www.google.com/maps/search/Rue+Astrid+18+Péruwelz" target="_blank" rel="noopener" class="map-overlay-btn">Ouvrir dans Google Maps →</a>
+      </div>
+    </div>
+
+    <!-- SALON ATH -->
+    <div class="salon-full-card" data-reveal="up" data-delay="1">
+      <div class="salon-full-grid">
+        <div class="salon-full-image">
+          <img src="images/salon-ath-2.jpg" alt="Salon Letizia.T Ath" loading="lazy" />
+        </div>
+        <div class="salon-full-body">
+          <div class="salon-full-num" aria-hidden="true">02</div>
+          <h2>Letizia.T<br /><em>Ath</em></h2>
+          <div class="salon-info-group">
+            <div class="salon-info-row">
+              <svg class="salon-info-icon" viewBox="0 0 24 24" fill="none"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5c-1.4 0-2.5-1.1-2.5-2.5S10.6 6.5 12 6.5s2.5 1.1 2.5 2.5S13.4 11.5 12 11.5z" fill="currentColor"/></svg>
+              <div class="salon-info-text">
+                <strong>Adresse</strong>
+                Grand'Place 11<br />7800 Ath, Belgique
+              </div>
+            </div>
+            <div class="salon-info-row">
+              <svg class="salon-info-icon" viewBox="0 0 24 24" fill="none"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" fill="currentColor"/></svg>
+              <div class="salon-info-text">
+                <strong>Téléphone</strong>
+                <a href="tel:+3268283882">+32 68 28 38 82</a>
+              </div>
+            </div>
+            <div class="salon-info-row">
+              <svg class="salon-info-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.3"/><path d="M12 7v5l3 3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+              <div class="salon-info-text">
+                <strong>Horaires</strong>
+                Mardi – Vendredi : 9h00 – 18h00<br />
+                Samedi : 9h00 – 17h00<br />
+                Lundi &amp; Dimanche : Fermé
+              </div>
+            </div>
+            <div class="salon-info-row">
+              <svg class="salon-info-icon" viewBox="0 0 24 24" fill="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <div class="salon-info-text">
+                <strong>Jour de promo</strong>
+                Tous les <strong>jeudis</strong>, profitez de tarifs réduits sur une sélection de forfaits coloration et balayage.
+              </div>
+            </div>
+          </div>
+          <div class="salon-full-actions">
+            <a href="tel:+3268283882" class="btn btn-dark btn-sm">Appeler</a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Grand+Place+11+Ath+Belgique" target="_blank" rel="noopener noreferrer" class="btn btn-ghost-dark btn-sm">Itinéraire</a>
+            <a href="https://salonkee.be/salon-group/letizia-t" target="_blank" rel="noopener noreferrer" class="btn btn-ghost-dark btn-sm">Réserver</a>
+          </div>
+        </div>
+      </div>
+      <div class="map-embed">
+        <img class="map-placeholder-img" src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1200&q=60" alt="Carte — Letizia.T Ath" loading="lazy" />
+        <a href="https://www.google.com/maps/search/Grand+Place+11+Ath+Belgique" target="_blank" rel="noopener" class="map-overlay-btn">Ouvrir dans Google Maps →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── PHOTOS INTÉRIEUR ── -->
+<section style="background:var(--black);padding:var(--section-v) 0">
+  <div class="container">
+    <div class="section-header centered" style="margin-bottom:3.5rem">
+      <span class="label section-label text-silver" data-reveal="up">L'espace</span>
+      <h2 class="h2" data-reveal="up" data-delay="1">Nos salons <em>en images</em></h2>
+    </div>
+
+    <!-- Péruwelz -->
+    <div style="margin-bottom:4rem">
+      <p style="font-family:'Cormorant Garamond',serif;font-size:0.75rem;color:rgba(192,192,192,0.45);letter-spacing:0.28em;text-transform:uppercase;margin-bottom:1.25rem" data-reveal="up">Letizia.T Péruwelz</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px" data-reveal="scale">
+        <div style="overflow:hidden;aspect-ratio:4/3;background:var(--dark-mid)">
+          <img src="images/salon-peruwelz-10.jpg" alt="Salon Letizia.T Péruwelz" loading="lazy" class="salon-img-hover" />
+        </div>
+        <div style="overflow:hidden;aspect-ratio:4/3;background:var(--dark-mid)">
+          <img src="images/salon-peruwelz-11.jpg" alt="Ambiance salon Letizia.T Péruwelz" loading="lazy" class="salon-img-hover" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Ath -->
+    <div>
+      <p style="font-family:'Cormorant Garamond',serif;font-size:0.75rem;color:rgba(192,192,192,0.45);letter-spacing:0.28em;text-transform:uppercase;margin-bottom:1.25rem" data-reveal="up">Letizia.T Ath</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px" data-reveal="scale">
+        <div style="overflow:hidden;aspect-ratio:4/5;background:var(--dark-mid)">
+          <img src="images/salon-ath-1.jpg" alt="Espace coiffure Letizia.T Ath" loading="lazy" class="salon-img-hover" />
+        </div>
+        <div style="overflow:hidden;aspect-ratio:4/5;background:var(--dark-mid)">
+          <img src="images/salon-ath-2.jpg" alt="Vue d'ensemble salon Letizia.T Ath" loading="lazy" class="salon-img-hover" />
+        </div>
+        <div style="overflow:hidden;aspect-ratio:4/5;background:var(--dark-mid)">
+          <img src="images/salon-ath-3.jpg" alt="Ambiance salon Letizia.T Ath" loading="lazy" class="salon-img-hover" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── VIDÉO ── -->
+<section style="background:var(--black-mid);padding:var(--section-v) 0;border-top:1px solid rgba(192,192,192,0.06)">
+  <div class="container" style="max-width:960px">
+    <div class="section-header centered" style="margin-bottom:3rem">
+      <span class="label section-label text-silver" data-reveal="up">Découvrir</span>
+      <h2 class="h2" data-reveal="up" data-delay="1">Le salon <em>Ath</em> en vidéo</h2>
+    </div>
+    <div data-reveal="up" data-delay="1" style="max-width:360px;margin:0 auto;aspect-ratio:9/16;overflow:hidden;border:1px solid rgba(192,192,192,0.1)">
+      <iframe
+        src="https://www.youtube.com/embed/ciTPwlaKPNY"
+        title="Vidéo de présentation du salon Letizia.T Ath"
+        style="width:100%;height:100%;display:block;border:0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        loading="lazy"
+        allowfullscreen
+      ></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="booking-cta section">
+  <div class="container">
+    <div class="booking-cta-inner">
+      <span class="label section-label text-silver" data-reveal="up">Prêt(e) à nous rendre visite ?</span>
+      <h2 class="h2" data-reveal="up" data-delay="1">
+        Réservez votre<br /><em>moment d'exception.</em>
+      </h2>
+      <p class="booking-cta-sub" data-reveal="up" data-delay="2">Péruwelz ou Ath — les deux salons Letizia.T vous accueillent avec la même exigence.</p>
+      <div class="booking-cta-actions" style="margin-top:2.5rem" data-reveal="up" data-delay="3">
+        <a href="https://salonkee.be/salon-group/letizia-t" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg btn-magnetic">Réserver en ligne</a>
+        <a href="contact.html" class="btn btn-secondary btn-lg btn-magnetic">Nous contacter</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer role="contentinfo">
+  <div class="container">
+    <div class="footer-top">
+      <div><a href="index.html" class="footer-brand-name"><img src="logo.png" alt="Letizia.T Coiffure" class="footer-logo-img" /></a><p class="footer-brand-desc">L'art de sublimer votre cheveu avec précision, élégance et passion.</p><div class="footer-social"><a href="https://www.instagram.com/salonletizia.t?igsh=MXM1c2pqa2toaW5xMQ%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a><a href="https://www.facebook.com/share/17oDURodCF/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></div>
+      <div><p class="footer-col-title">Navigation</p><ul class="footer-col-links"><li><a href="index.html">Accueil</a></li><li><a href="salons.html">Nos Salons</a></li><li><a href="prestations.html">Prestations</a></li><li><a href="galerie.html">Galerie</a></li><li><a href="avis.html">Avis</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div><p class="footer-col-title">Nos Salons</p><address class="footer-address"><strong>Letizia.T Péruwelz</strong>Rue Astrid 18<br /><a href="tel:+32471395446">+32 471 39 54 46</a><div class="footer-address-sep"></div><strong>Letizia.T Ath</strong>Grand'Place 11<br /><a href="tel:+3268283882">+32 68 28 38 82</a></address></div>
+      <div><p class="footer-col-title">Réservation</p><ul class="footer-col-links"><li><a href="https://salonkee.be/salon-group/letizia-t" target="_blank" rel="noopener noreferrer">Réserver en ligne →</a></li><li><a href="contact.html">Nous contacter</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-bottom-left">© 2026 Letizia.T — Tous droits réservés</p>
+      <div class="footer-bottom-right"><a href="#">Mentions légales</a><a href="#">Confidentialité</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
