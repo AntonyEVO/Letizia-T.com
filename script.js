@@ -8,6 +8,38 @@ document.addEventListener('DOMContentLoaded', () => {
   const qs  = (s, ctx = document) => ctx.querySelector(s);
   const qsa = (s, ctx = document) => [...ctx.querySelectorAll(s)];
 
+  /* ── COOKIES (consentement Google tag) ── */
+  // La balise Google est dans le <head>, mesure refusée par défaut ; on l'active si le visiteur accepte
+  const CONSENT_KEY = 'lt-cookie-consent';
+  const getConsent  = () => { try { return localStorage.getItem(CONSENT_KEY); } catch (e) { return null; } };
+  const setConsent  = v  => { try { localStorage.setItem(CONSENT_KEY, v); } catch (e) {} };
+
+  if (!getConsent()) {
+    const banner = document.createElement('div');
+    banner.className = 'cookie-banner';
+    banner.setAttribute('role', 'region');
+    banner.setAttribute('aria-label', 'Cookies');
+    banner.innerHTML = `
+      <p>Nous utilisons des cookies de mesure d'audience (Google Analytics) pour comprendre comment le site est utilisé et l'améliorer.</p>
+      <div class="cookie-banner-actions">
+        <button class="btn btn-secondary btn-sm" data-consent="denied">Refuser</button>
+        <button class="btn btn-primary btn-sm" data-consent="granted">Accepter</button>
+      </div>`;
+    document.body.append(banner);
+    setTimeout(() => banner.classList.add('visible'), 800);
+
+    qsa('[data-consent]', banner).forEach(btn => {
+      btn.addEventListener('click', () => {
+        const choice = btn.getAttribute('data-consent');
+        setConsent(choice);
+        if (choice === 'granted' && window.gtag) gtag('consent', 'update', { analytics_storage: 'granted' });
+        banner.classList.remove('visible');
+        qsa('.cursor, .cursor-ring').forEach(el => el.classList.remove('hover'));
+        setTimeout(() => banner.remove(), 500);
+      });
+    });
+  }
+
   /* ── PROGRESS BAR ── */
   const bar = document.createElement('div');
   bar.className = 'progress-bar';
